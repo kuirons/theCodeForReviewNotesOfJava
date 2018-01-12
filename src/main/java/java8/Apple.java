@@ -29,12 +29,12 @@ public class Apple {
         this.heavyWeight = heavyWeight;
     }
 
-    public static List<Apple> applesFilter(List<Apple> inventory, ApplePredicate predicate){
-        List<Apple> result = new ArrayList<>();
-        for (Apple apple :
+    public static <T> List<T> applesFilter(List<T> inventory, ApplePredicate<T> predicate){
+        List<T> result = new ArrayList<>();
+        for (T t :
                 inventory) {
-            if (predicate.test(apple))
-                result.add(apple);
+            if (predicate.test(t))
+                result.add(t);
         }
         return result;
     }
@@ -60,7 +60,7 @@ public class Apple {
     }
 }
 
-interface ApplePredicate{
-    boolean test(Apple apple);
+interface ApplePredicate<T>{
+    boolean test(T t);
 }
 
