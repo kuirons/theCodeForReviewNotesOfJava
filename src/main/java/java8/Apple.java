@@ -49,14 +49,12 @@ public class Apple {
         apple2.setAppleColor("red");
         testApple.add(apple1);
         testApple.add(apple2);
-        ApplePredicate p1 = new AppleColorPredicate();
-        ApplePredicate p2 = new AppleHeavyWeightPredicate();
         for (Apple a :
-                Apple.applesFilter(testApple,  p1)) {
+                Apple.applesFilter(testApple,  (Apple a) -> "green".equals(a.getAppleColor()))) {
             System.out.println(a.getAppleColor());
         }
         for (Apple a :
-                Apple.applesFilter(testApple, p2)) {
+                Apple.applesFilter(testApple, (Apple a) -> a.getHeavyWeight() > 150)) {
             System.out.println(a.getHeavyWeight());
         }
     }
@@ -66,22 +64,3 @@ interface ApplePredicate{
     boolean test(Apple apple);
 }
 
-class AppleHeavyWeightPredicate implements ApplePredicate{
-    @Override
-    public boolean test(Apple apple) {
-        if(apple.getHeavyWeight() > 150){
-            return true;
-        }
-        return false;
-    }
-}
-
-class AppleColorPredicate implements ApplePredicate{
-    @Override
-    public boolean test(Apple apple) {
-        if("green".equals(apple.getAppleColor())){
-            return true;
-        }
-        return false;
-    }
-}
