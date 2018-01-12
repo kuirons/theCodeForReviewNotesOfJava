@@ -21,7 +21,6 @@ public class AppleL {
     }
 
     public int getHeavyWeath() {
-
         return heavyWeath;
     }
 
