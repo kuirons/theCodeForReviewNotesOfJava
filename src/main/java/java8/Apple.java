@@ -12,6 +12,12 @@ public class Apple {
     private int heavyWeight;
     private String appleColor;
 
+    public Apple() {
+    }
+
+    public Apple(int i){
+        heavyWeight = i;
+    }
     public String getAppleColor() {
         return appleColor;
     }
@@ -29,7 +35,7 @@ public class Apple {
         this.heavyWeight = heavyWeight;
     }
 
-    public static <T> List<T> applesFilter(List<T> inventory, ApplePredicate<T> predicate){
+    public static <T> List<T> applesFilter(List<T> inventory, ApplePredicate<T> predicate) {
         List<T> result = new ArrayList<>();
         for (T t :
                 inventory) {
@@ -50,7 +56,7 @@ public class Apple {
         testApple.add(apple1);
         testApple.add(apple2);
         for (Apple a :
-                Apple.applesFilter(testApple,  (Apple a) -> "green".equals(a.getAppleColor()))) {
+                Apple.applesFilter(testApple, (Apple a) -> "green".equals(a.getAppleColor()))) {
             System.out.println(a.getAppleColor());
         }
         for (Apple a :
@@ -60,7 +66,7 @@ public class Apple {
     }
 }
 
-interface ApplePredicate<T>{
+interface ApplePredicate<T> {
     boolean test(T t);
 }
 
