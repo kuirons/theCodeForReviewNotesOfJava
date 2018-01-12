@@ -1,13 +1,14 @@
 /**
- * Created by khx on 17-10-21.
+ * @author WuGYu
+ * @date 2018/1/11 20:11
  */
 public class Callbacks {
     public static void main(String[] args) {
-        Callee1 c1=new Callee1();
-        Callee2 c2=new Callee2();
+        Callee1 c1 = new Callee1();
+        Callee2 c2 = new Callee2();
         MyIncrement.f(c2);
-        Caller caller1=new Caller(c1);
-        Caller caller2=new Caller(c2.getCallbackReference());
+        Caller caller1 = new Caller(c1);
+        Caller caller2 = new Caller(c2.getCallbackReference());
         caller1.go();
         caller1.go();
         caller2.go();
@@ -25,14 +26,12 @@ class Callee1 implements Incrementable {
     @Override
     public void increment() {
         i++;
-//        System.out.print(i);
         System.out.println(i);
     }
 }
 
 class MyIncrement {
     public void increment() {
-//        System.out.printf("Other operation");
         System.out.println("Other operation");
     }
 
@@ -44,18 +43,16 @@ class MyIncrement {
 class Callee2 extends MyIncrement {
     private int i = 0;
 
-    @Override
     public void increment() {
         super.increment();
         i++;
-//        System.out.print(i);
         System.out.println(i);
     }
 
     private class Closure implements Incrementable {
-
         @Override
         public void increment() {
+            //outclass.this应用外部类的当前对象
             Callee2.this.increment();
         }
     }
@@ -67,10 +64,12 @@ class Callee2 extends MyIncrement {
 
 class Caller {
     private Incrementable callbackReference;
-    Caller(Incrementable cbh){
-        callbackReference=cbh;
+
+    Caller(Incrementable cbh) {
+        callbackReference = cbh;
     }
-    void go(){
+
+    void go() {
         callbackReference.increment();
     }
 }
